@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>申请成立课题组</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+<!--组件插入导航栏-->
+<div th:replace="~{commons/commons::topbar}"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--组件插入侧边栏-->
+        <div th:replace="~{commons/commons::sidebar(active='grouplist.html')}"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <form th:action="@{/addgroup}" method="post">
+                <div class="form-row">
+                        <div class="form-group col-md-6">
+                        <label for="num" class="col-sm-2 control-label">课题组名</label>
+                        <input  type="text" name="topic" id="topic" class="form-control" placeholder="请驶入课题组名">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="name" class="col-sm-2 control-label">研究方向</label>
+                        <input type="text" name="direction" id="direction" class="form-control" placeholder="请输入研究方向">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="time" class="col-sm-2 control-label">申请时间</label>
+                        <input type="date" name="stime" id="stime" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="time" class="col-sm-2 control-label">结题时间</label>
+                        <input type="date" name="etime" id="etime" class="form-control">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="topic" class="col-sm-2 control-label">申请人</label>
+                        <input  type="text" name="name" id="name" class="form-control" placeholder="请输入申请人">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="time" class="col-sm-2 control-label">经费</label>
+                        <input type="text" name="fund" id="fund" class="form-control" placeholder="请输入经费">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <input  type="hidden" name="status" id="status" class="form-control" value="待审核">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </form>
+        </main>
+    </div>
+</div>
+
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script type="text/javascript" src="asserts/js/jquery-3.2.1.slim.min.js"></script>
+<script type="text/javascript" src="asserts/js/popper.min.js"></script>
+<script type="text/javascript" src="asserts/js/bootstrap.min.js"></script>
+
+<!-- Icons -->
+<script type="text/javascript" src="asserts/js/feather.min.js"></script>
+<script>
+    feather.replace()
+</script>
+
+<!-- Graphs -->
+<script type="text/javascript" src="asserts/js/Chart.min.js"></script>
+<script>
+    var ctx = document.getElementById("myChart");
+    var myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            datasets: [{
+                data: [15339, 21345, 18483, 24003, 23489, 24092, 12034],
+                lineTension: 0,
+                backgroundColor: 'transparent',
+                borderColor: '#007bff',
+                borderWidth: 4,
+                pointBackgroundColor: '#007bff'
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: false
+                    }
+                }]
+            },
+            legend: {
+                display: false,
+            }
+        }
+    });
+</script>
+
+</body>
+
+</html>

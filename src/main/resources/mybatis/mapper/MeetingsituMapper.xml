@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangweiju.mapper.MeetingsituMapper">
+
+    <select id="queryMeetingsituList" resultType="Meetingsitu">
+        select * from meetingsitu
+    </select>
+
+    <select id="queryMeetingsituByName" resultType="Meetingsitu">
+        select * from meetingsitu where name=#{name}
+    </select>
+
+    <insert id="addMeetingsitu" parameterType="Meetingsitus">
+        insert into meetingsitu (name,time,place,ynum,snum)
+                                values (#{name},#{time},#{place},#{ynum},#{snum})
+    </insert>
+
+    <insert id="addMeetingcount" parameterType="Meetingcount">
+        insert into meetingcount (name,qnum)
+                                values (#{name},#{qnum})
+    </insert>
+
+</mapper>

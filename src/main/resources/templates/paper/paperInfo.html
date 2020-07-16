@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>修改论文信息</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+<!--组件插入导航栏-->
+<div th:replace="~{commons/commons::topbar}"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--组件插入侧边栏-->
+        <div th:replace="~{commons/commons::sidebar(active='paper.html')}"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+
+
+            <div class="alert alert-primary" role="alert">
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+                <a style=" color:black; font-size:18px; font-weight: bold;">修改论文信息</a>
+            </div>
+            <form th:action="@{/updateApplipaper}" method="post">
+
+                <input type="hidden" name="id" th:value="${applipaper.id}">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="time" class="col-sm-2 control-label">发表时间</label>
+                        <input  th:value="${#dates.format(applipaper.time,'yyyy/MM/dd')}"  type="date" name="time" id="time" class="form-control" placeholder="发表时间">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="chname" class="col-sm-2 control-label">中文名称</label>
+                        <input th:value="${applipaper.chname}" type="text" name="chname" id="chname" class="form-control" placeholder="中文名称">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="enname" class="col-sm-2 control-label">英文名称</label>
+                        <input th:value="${applipaper.enname}" type="text" name="enname" id="enname" class="form-control" placeholder="英文名称">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="time" class="col-sm-2 control-label">论文作者</label>
+                        <input th:value="${applipaper.author}" type="text" name="author" id="author" class="form-control" placeholder="论文作者">
+                    </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="subject" class="col-sm-2 control-label">学科</label>
+                        <select name="subject" id="subject" class="form-control">
+                            <option th:selected="${applipaper.subject} eq ${subject.getSubname()}" th:each="subject:${subjects}" th:text="${subject.getSubname()}" th:value="${subject.getSubname()}"></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="publication" class="col-sm-2 control-label">发表刊物</label>
+                        <input th:value="${applipaper.publication}" type="text" name="publication" id="publication" class="form-control" placeholder="发表刊物">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="publevel" class="col-sm-2 control-label">刊物级别</label>
+                        <select name="publevel" id="publevel" class="form-control">
+                            <option th:value="${applipaper.publevel}" th:selected="${applipaper.publevel} eq '国家级刊物'">国家级刊物</option>
+                            <option th:value="${applipaper.publevel}" th:selected="${applipaper.publevel} eq '省级刊物'">省级刊物</option>
+                            <option th:value="${applipaper.publevel}" th:selected="${applipaper.publevel} eq '外文刊物'">外文刊物</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="CNnum" class="col-sm-2 control-label">CN刊号</label>
+                        <input th:value="${applipaper.CNnum}" type="text" name="CNnum" id="CNnum" class="form-control" placeholder="CNxx-xxxx">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="pubattributes" class="col-sm-2 control-label">刊物属性</label>
+                        <select name="pubattributes" id="pubattributes" class="form-control">
+                            <option th:value="${applipaper.pubattributes}" th:selected="${applipaper.publevel} eq '核心期刊'">核心期刊</option>
+                            <option th:value="${applipaper.pubattributes}" th:selected="${applipaper.publevel} eq '普通期刊'">普通期刊</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="ISSNnum" class="col-sm-2 control-label">ISSN刊号</label>
+                        <input th:value="${applipaper.ISSNnum}" type="text" name="ISSNnum" id="ISSNnum" class="form-control" placeholder="ISSN xxxx-xxxx">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="count" class="col-sm-2 control-label">字数</label>
+                        <input th:value="${applipaper.count}" type="text" name="count" id="count" class="form-control" placeholder="字数">
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="pagenum" class="col-sm-2 control-label">卷期页</label>
+                        <input th:value="${applipaper.pagenum}" type="text" name="pagenum" id="pagenum" class="form-control" placeholder="第x卷,第x期,xx-xx">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="remark" class="col-sm-2 control-label">备注</label>
+                        <input th:value="${applipaper.remark}" type="text" name="remark" id="remark" class="form-control">
+                    </div>
+                </div>
+                <input type="hidden" name="status" th:value="${applipaper.status}">
+                <button type="submit" class="btn btn-primary">确定</button>
+            </form>
+        </main>
+    </div>
+</div>
+</body>
+
+</html>

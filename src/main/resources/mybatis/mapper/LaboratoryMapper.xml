@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangweiju.mapper.LaboratoryMapper">
+
+    <select id="queryLaboratoryList" resultType="Laboratory">
+        select * from grolab
+    </select>
+    <select id="queryLaboratoryByNum" parameterType="String" resultType="Laboratory">
+        select * from grolab where num = #{num}
+    </select>
+    <select id="queryLaboratoryByStatus" parameterType="int" resultType="Laboratory">
+        select * from grolab where status = #{status}
+    </select>
+    <select id="queryLaboratoryById" parameterType="int" resultType="Laboratory">
+        select * from grolab where id = #{id}
+    </select>
+
+    <update id="updateLaboratory">
+        update laboratory set pro_id = #{pro_id} where num = #{num}
+    </update>
+
+    <select id="queryLaboratoryBynum" parameterType="String" resultType="Laboratory">
+        select * from laboratory where num = #{num}
+    </select>
+
+</mapper>

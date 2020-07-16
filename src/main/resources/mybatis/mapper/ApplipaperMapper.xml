@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangweiju.mapper.ApplipaperMapper">
+
+    <select id="queryApplipaperList" resultType="Applipaper">
+        select * from applipaper
+    </select>
+
+    <select id="queryApplipaperByAuthor" resultType="Applipaper">
+        select * from applipaper where author=#{author}
+    </select>
+
+    <insert id="addApplipaper" parameterType="Applipapers">
+        insert into applipaper (time,chname,enname,author,subject,publication,publevel,pubattributes,CNnum,ISSNnum,count,pagenum,remark)
+                                values (#{time},#{chname},#{enname},#{author},#{subject},#{publication},#{publevel},#{pubattributes},#{CNnum},#{ISSNnum},#{count},#{pagenum},#{remark})
+    </insert>
+
+    <select id="queryApplipaperById" resultType="Applipaper">
+        select * from applipaper where id=#{id}
+    </select>
+
+    <select id="queryPaperList" resultType="Paper">
+        select * from paper
+    </select>
+
+    <select id="queryPaperByAuthor" resultType="Paper">
+        select * from paper where author=#{author}
+    </select>
+
+    <update id="updateApplipaper" parameterType="Applipaper">
+        update applipaper set  time=#{time},chname=#{chname},enname=#{enname},author=#{author},subject=#{subject},publication=#{publication},publevel=#{publevel},pubattributes=#{pubattributes},CNnum=#{CNnum},ISSNnum=#{ISSNnum},count=#{count},pagenum=#{pagenum},remark=#{remark},status=#{status}  where id = #{id}
+    </update>
+
+    <insert id="addPaper" parameterType="Applipaper">
+        insert into paper (time,chname,enname,author,subject,publication,publevel,pubattributes,CNnum,ISSNnum,count,pagenum,remark)
+                                values (#{time},#{chname},#{enname},#{author},#{subject},#{publication},#{publevel},#{pubattributes},#{CNnum},#{ISSNnum},#{count},#{pagenum},#{remark})
+    </insert>
+
+    <select id="queryApplipaperByStastus" parameterType="String" resultType="Applipaper">
+           select * from applipaper where status =#{status}
+    </select>
+
+    <select id="queryPaperListByDate01" resultType="Paper">
+        select * from paper where YEAR(time)=2014
+    </select>
+    <select id="queryPaperListByDate02" resultType="Paper">
+        select * from paper where YEAR(time)=2015
+    </select>
+    <select id="queryPaperListByDate03" resultType="Paper">
+        select * from paper where YEAR(time)=2016
+    </select>
+    <select id="queryPaperListByDate04" resultType="Paper">
+        select * from paper where YEAR(time)=2017
+    </select>
+    <select id="queryPaperListByDate05" resultType="Paper">
+        select * from paper where YEAR(time)=2018
+    </select>
+    <select id="queryPaperListByDate06" resultType="Paper">
+        select * from paper where YEAR(time)=2019
+    </select>
+    <select id="queryPaperListByDate07" resultType="Paper">
+        select * from paper where YEAR(time)=2020
+    </select>
+
+</mapper>

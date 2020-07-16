@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangweiju.mapper.ApplipatentMapper">
+
+    <select id="queryApplipatentList" resultType="Applipatent">
+        select * from applipatent
+    </select>
+
+    <select id="queryApplipatentByApplicant" resultType="Applipatent">
+        select * from applipatent where applicant=#{applicant}
+    </select>
+
+    <insert id="addApplipatent" parameterType="Applipatents">
+        insert into applipatent (time,patentname,applicant,inventor,summary,category,ZLnum,CNnum)
+                                values (#{time},#{patentname},#{applicant},#{inventor},#{summary},#{category},#{ZLnum},#{CNnum})
+    </insert>
+
+    <select id="queryApplipatentById" resultType="Applipatent">
+        select * from applipatent where id=#{id}
+    </select>
+
+    <select id="queryPatentList" resultType="Patent">
+        select * from patent
+    </select>
+
+    <select id="queryPatentByApplicant" resultType="Patent">
+        select * from patent where applicant=#{applicant}
+    </select>
+
+    <update id="updateApplipatent" parameterType="Applipatent">
+        update applipatent set  time=#{time},patentname=#{patentname},applicant=#{applicant},inventor=#{inventor},summary=#{summary},category=#{category},ZLnum=#{ZLnum},CNnum=#{CNnum},status=#{status}  where id = #{id}
+    </update>
+
+    <insert id="addPatent" parameterType="Applipatent">
+        insert into patent (time,patentname,applicant,inventor,summary,category,ZLnum,CNnum)
+                                values (#{time},#{patentname},#{applicant},#{inventor},#{summary},#{category},#{ZLnum},#{CNnum})
+    </insert>
+
+    <select id="queryApplipatentByStastus" parameterType="String" resultType="Applipatent">
+           select * from applipatent where status =#{status}
+    </select>
+
+    <select id="queryPatentListByDate01" resultType="Patent">
+        select * from patent where YEAR(time)=2014
+    </select>
+    <select id="queryPatentListByDate02" resultType="Patent">
+        select * from patent where YEAR(time)=2015
+    </select>
+    <select id="queryPatentListByDate03" resultType="Patent">
+        select * from patent where YEAR(time)=2016
+    </select>
+    <select id="queryPatentListByDate04" resultType="Patent">
+        select * from patent where YEAR(time)=2017
+    </select>
+    <select id="queryPatentListByDate05" resultType="Patent">
+        select * from patent where YEAR(time)=2018
+    </select>
+    <select id="queryPatentListByDate06" resultType="Patent">
+        select * from patent where YEAR(time)=2019
+    </select>
+    <select id="queryPatentListByDate07" resultType="Patent">
+        select * from patent where YEAR(time)=2020
+    </select>
+</mapper>

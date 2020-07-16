@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<!-- saved from url=(0052)http://getbootstrap.com/docs/4.0/examples/dashboard/ -->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>项目组成员管理</title>
+    <!-- Bootstrap core CSS -->
+    <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/dashboard.css}" rel="stylesheet">
+    <style type="text/css">
+        /* Chart.js */
+
+        @-webkit-keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        @keyframes chartjs-render-animation {
+            from {
+                opacity: 0.99
+            }
+            to {
+                opacity: 1
+            }
+        }
+
+        .chartjs-render-monitor {
+            -webkit-animation: chartjs-render-animation 0.001s;
+            animation: chartjs-render-animation 0.001s;
+        }
+    </style>
+</head>
+
+<body>
+<!--组件插入导航栏-->
+<div th:replace="~{commons/commons::topbar}"></div>
+
+<div class="container-fluid">
+    <div class="row">
+        <!--组件插入侧边栏-->
+        <div th:replace="~{commons/commons::sidebar(active='Mygroup01.html')}"></div>
+
+        <main role="main" class="col-md-9 ml-sm-auto col-lg-10 pt-3 px-4">
+            <form th:action="@{/memberUpdate}" method="post">
+                <input type="hidden" name="id" id="id" th:value="${resGroup.id}">
+                <input type="hidden" name="topic" id="topic" th:value="${resGroup.topic}">
+                <input type="hidden" name="researchdirection" id="researchdirection" th:value="${resGroup.researchdirection}">
+                <input type="hidden" name="leader" id="leader" th:value="${resGroup.leader}">
+                <input type="hidden" name="applicationtime" id="applicationtime" th:value="${#dates.format(resGroup.applicationtime,'yyyy-MM-dd')}">
+                <input type="hidden" name="status" id="status" th:value="${resGroup.status}">
+                <input type="hidden" name="fund" id="fund" th:value="${resGroup.fund}">
+                <input type="hidden" name="endtime" id="endtime" th:value="${#dates.format(resGroup.endtime,'yyyy-MM-dd')}">
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label for="time" class="col-sm-2 control-label">项目组成员</label>
+                        <input type="text" name="member" id="member" class="form-control" th:value="${resGroup.member}">
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-primary">提交</button>
+            </form>
+        </main>
+    </div>
+</div>
+</body>
+
+</html>

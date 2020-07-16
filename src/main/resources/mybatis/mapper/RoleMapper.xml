@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangweiju.mapper.RoleMapper">
+
+    <select id="queryRoleList" resultType="Role">
+        select * from role
+    </select>
+
+    <insert id="addRole" parameterType="Role">
+        insert into role(id,rolename,level) values (#{id},#{rolename},#{level})
+    </insert>
+
+    <update id="updateRole" parameterType="Role">
+        update role set rolename=#{rolename},level=#{level} where id = #{id}
+    </update>
+
+    <delete id="deleteRole" parameterType="int">
+        delete from role where id = #{id}
+    </delete>
+
+    <select id="queryRoleById" parameterType="int" resultType="Role">
+        select * from role where id = #{id}
+    </select>
+
+    <select id="queryRoleListBylevel" parameterType="int" resultType="Role">
+        select * from role where level = #{level}
+    </select>
+
+</mapper>

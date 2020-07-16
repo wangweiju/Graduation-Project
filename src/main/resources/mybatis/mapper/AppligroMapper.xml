@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangweiju.mapper.AppligroMapper">
+
+    <select id="queryAppligroList" resultType="Appligro">
+        select * from appligro
+    </select>
+
+    <insert id="addApppligro" parameterType="Appligro" useGeneratedKeys="true">
+        insert into appligro(topic,direction,name,stime,status,etime,fund) values (#{topic},#{direction},#{name},#{stime},#{status},#{etime},#{fund})
+    </insert>
+
+    <select id="queryAppligroById"  parameterType="int" resultType="Appligro">
+        select * from appligro where id = #{id}
+    </select>
+
+    <update id="rejectAppligro" parameterType="Appligro">
+        update appligro set topic=#{topic},direction=#{direction},name=#{name},stime=#{stime},status=#{status},etime=#{etime},fund=#{fund} where id = #{id}
+    </update>
+
+    <insert id="addgroup" parameterType="Appligro" useGeneratedKeys="true">
+        insert into resgroup(topic,researchdirection,leader,applicationtime,fund,endtime) values (#{topic},#{direction},#{name},#{stime},#{fund},#{etime})
+    </insert>
+
+    <select id="queryAppligroByStatus" parameterType="String" resultType="Appligro">
+           select * from appligro where status =#{status}
+    </select>
+
+    <select id="queryAppligroByName" parameterType="String" resultType="Appligro">
+        select * from appligro where name = #{name}
+    </select>
+
+</mapper>

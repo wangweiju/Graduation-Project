@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangweiju.mapper.ResGroupMapper">
+
+    <select id="queryResGrouplist" resultType="ResGroup">
+          select * from resgroup
+    </select>
+
+    <select id="queryResGrouplistByTopic" parameterType="String" resultType="ResGroup">
+        select * from resgroup where topic = #{topic}
+    </select>
+
+    <select id="queryResGrouplistByName" parameterType="String" resultType="ResGroup">
+        select * from resgroup where leader = #{leader}
+    </select>
+
+    <select id="queryResGroupById" parameterType="int" resultType="ResGroup">
+        select * from resgroup where id = #{id}
+    </select>
+    
+    <update id="updateResGroup" parameterType="ResGroup">
+      update resgroup set member=#{member},applicationtime=#{applicationtime},endtime=#{endtime} where id=#{id}
+    </update>
+
+    <select id="queryResGrouplistBytopic" parameterType="String" resultType="ResGroup">
+        select * from resgroup where topic = #{topic}
+    </select>
+
+    <select id="queryResGroupListByMember" parameterType="String" resultType="ResGroup">
+        select * from resgroup where member like CONCAT('%',#{member},'%')
+    </select>
+</mapper>

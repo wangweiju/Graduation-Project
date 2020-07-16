@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangweiju.mapper.AppliaddMapper">
+
+    <select id="queryAppliaddList" parameterType="String" resultType="Appliadd">
+        select * from appliadd where leader = #{leader}
+    </select>
+
+    <insert id="insertAppliadd">
+        insert into appliadd (topic,leader,member,name) values (#{topic},#{leader},#{member},#{name})
+    </insert>
+
+    <select id="queryAppliaddListByName" parameterType="String" resultType="Appliadd">
+        select * from appliadd where name = #{name}
+    </select>
+    <select id="queryAppliaddListByStatus" parameterType="String" resultType="Appliadd">
+        select * from appliadd where status = #{status} and leader = #{leader}
+    </select>
+
+    <select id="queryAppliaddById"  parameterType="int" resultType="Appliadd">
+        select * from appliadd where id = #{id}
+    </select>
+
+    <update id="rejectAppliadd" parameterType="Appliadd">
+        update appliadd set topic=#{topic},leader=#{leader},member=#{member},status=#{status},name=#{name} where id = #{id}
+    </update>
+
+    <update id="agreeAppliadd">
+        update resgroup set member=#{member} where topic = #{topic}
+    </update>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangweiju.mapper.UserRoleMapper">
+
+    <select id="queryUserRoleList" resultType="UserRole">
+        select * from userrole
+    </select>
+
+    <select id="queryUserListByRole" parameterType="String" resultType="UserRole">
+        select * from userrole  where perms = #{perms}
+    </select>
+
+    <select id="queryUserListByName" parameterType="String" resultType="UserRole">
+        select * from userrole  where name = #{name}
+    </select>
+
+</mapper>

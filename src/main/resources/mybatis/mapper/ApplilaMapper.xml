@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.wangweiju.mapper.ApplilaMapper">
+
+    <select id="queryApplilaList" resultType="Applila">
+        select * from applila
+    </select>
+
+    <insert id="addApplila" parameterType="Applila" useGeneratedKeys="true">
+        insert into applila(num,applicant,topic,status,stime,etime) values (#{num},#{applicant},#{topic},#{status},#{stime},#{etime})
+    </insert>
+
+    <select id="queryApplilaById" parameterType="int" resultType="Applila">
+        select * from applila where id = #{id}
+    </select>
+
+    <update id="rejectApplila" parameterType="Applila">
+        update applila set num=#{num},applicant=#{applicant},topic=#{topic},status=#{status},stime=#{stime},etime=#{etime} where id = #{id}
+    </update>
+
+    <select id="queryApplilaByStatus" parameterType="String" resultType="Applila">
+           select * from applila where status =#{status}
+    </select>
+
+    <select id="queryApplilaByApplicant" parameterType="String" resultType="Applila">
+        select * from applila where applicant = #{applicant}
+    </select>
+
+</mapper>
