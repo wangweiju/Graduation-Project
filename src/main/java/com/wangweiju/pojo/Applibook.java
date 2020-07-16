@@ -7,7 +7,7 @@ import java.util.Date;
 @Data
 public class Applibook {
 
-    private int id;
+    private int id;//id编号
     private String name;//著作名称
     private String author;//作者
     private String authornum;//第几作者
